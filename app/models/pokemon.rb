@@ -1,5 +1,4 @@
 class Pokemon < ApplicationRecord
-  belongs_to :game
-  has_many :pokemontypes
-  validates_presence_of :name, :skill
+  validates_presence_of :name
+  has_many :types
 end
