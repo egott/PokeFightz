@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208180010) do
+ActiveRecord::Schema.define(version: 20170208183611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,24 @@ ActiveRecord::Schema.define(version: 20170208180010) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string   "name",       null: false
-    t.string   "skill",      null: false
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_pokemons_on_game_id", using: :btree
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "half_damage_from",   default: [],              array: true
+    t.text     "no_damage_from",     default: [],              array: true
+    t.text     "half_damage_to",     default: [],              array: true
+    t.text     "double_damage_from", default: [],              array: true
+    t.text     "no_damage_to",       default: [],              array: true
+    t.text     "double_damage_to",   default: [],              array: true
+    t.integer  "pokemon_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["pokemon_id"], name: "index_types_on_pokemon_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
