@@ -1,0 +1,3 @@
+class PokeType < ApplicationRecord
+  
+end
