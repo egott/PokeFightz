@@ -1,0 +1,2 @@
+class PokemonGame < ApplicationRecord
+end

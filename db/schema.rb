@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208183611) do
+ActiveRecord::Schema.define(version: 20170208211439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,26 @@ ActiveRecord::Schema.define(version: 20170208183611) do
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
   end
 
-  create_table "pokemons", force: :cascade do |t|
-    t.string   "name",       null: false
+  create_table "poke_types", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "type_id"
+    t.index ["pokemon_id"], name: "index_poke_types_on_pokemon_id", using: :btree
+    t.index ["type_id"], name: "index_poke_types_on_type_id", using: :btree
+  end
+
+  create_table "pokemon_games", force: :cascade do |t|
     t.integer  "game_id"
+    t.integer  "pokemon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_pokemons_on_game_id", using: :btree
+    t.index ["game_id"], name: "index_pokemon_games_on_game_id", using: :btree
+    t.index ["pokemon_id"], name: "index_pokemon_games_on_pokemon_id", using: :btree
+  end
+
+  create_table "pokemons", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "types", force: :cascade do |t|
@@ -40,10 +54,8 @@ ActiveRecord::Schema.define(version: 20170208183611) do
     t.text     "double_damage_from", default: [],              array: true
     t.text     "no_damage_to",       default: [],              array: true
     t.text     "double_damage_to",   default: [],              array: true
-    t.integer  "pokemon_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.index ["pokemon_id"], name: "index_types_on_pokemon_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
