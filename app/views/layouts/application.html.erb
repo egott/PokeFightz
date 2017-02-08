@@ -9,19 +9,21 @@
   </head>
 
   <body>
+    <br>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        </nav>
+        <h3 class="text-muted">PokeFightz</h3>
+      </div>
     <nav>
-      <ul>
-        <li><a href="/">PokeFights</a></li>
-        <% if user_signed_in? %>
-          <li><a href="users/<%=current_user.id%>"><%= current_user.email %></a></li>
-          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-          <li><a href="/games">Start Playing!</a></li>
-        <% else %>
-          <li><%= link_to "register", new_user_registration_path %></li>
-          <li><%= link_to "login", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
+
     <%= yield %>
   </body>
 </html>
