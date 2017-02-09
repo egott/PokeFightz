@@ -8,7 +8,7 @@
   <h4>Scroll to see some optional pokemons to choose from</h4>
   <div class="scroll-names">
     <ul>
-      <%= @pokemons.each do |pokemon| %>
+      <% @pokemons.each do |pokemon| %>
         <li><%=pokemon.name%></li>
       <% end %>
     </ul>
