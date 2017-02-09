@@ -5,13 +5,30 @@ class Game < ApplicationRecord
   has_many :pokemons, :through => :pokemon_games
 
 
+  def computer_pokemon(a,b,c,d,e)
+    @computer_team = [Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample]
+  end
+
+  def computer_types(i)
+    @computer_team = [Pokemon.all[7],Pokemon.all[12],Pokemon.all[17],Pokemon.all[45],Pokemon.all[49]]
+    enemy_types = []
+    @computer_team[i].types.each do |type|
+      enemy_types << type.name
+    end
+    enemy_types
+  end
 
   def half_damage_from(i)
     half_from_types = []
     self.pokemons[i].types.each do |type|
         half_from_types.concat(type.half_damage_from)
     end
-    half_from_types.uniq
+    self.computer_types(i).each do |com_type|
+      if half_from_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
   def no_damage_from(i)
@@ -19,7 +36,12 @@ class Game < ApplicationRecord
     self.pokemons[i].types.each do |type|
         no_from_types.concat(type.no_damage_from)
     end
-    no_from_types.uniq
+    self.computer_types(i).each do |com_type|
+      if no_from_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
   def double_damage_from(i)
@@ -27,7 +49,12 @@ class Game < ApplicationRecord
     self.pokemons[i].types.each do |type|
         double_from_types.concat(type.double_damage_from)
     end
-    double_from_types.uniq
+    self.computer_types(i).each do |com_type|
+      if double_from_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
   def half_damage_to(i)
@@ -69,18 +96,7 @@ class Game < ApplicationRecord
     end
   end
 
-  def computer_pokemon(a,b,c,d,e)
-    @computer_team = [Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample]
-  end
-  #take in i and result of computer_pokemon
-  def computer_types(i)
-    @computer_team = [Pokemon.all[5],Pokemon.all[10],Pokemon.all[15],Pokemon.all[20],Pokemon.all[25]]
-    enemy_types = []
-    @computer_team[i].types.each do |type|
-      enemy_types << type.name
-    end
-    enemy_types
-  end
+  #give in 5 indexes for enemy pokemons
 
   #calculate damage
   def calculate_damage_to(i)
@@ -98,10 +114,41 @@ class Game < ApplicationRecord
     damage_to
   end
   #calculate damage from
-  def calculate_damage_from
+  def calculate_damage_from(i)
+    damage_from = 1
+    if self.no_damage_from(i) == true
+      damage_from = 0
+    else
+      if self.half_damage_from(i) == true
+        damage_from *= 0.5
+      end
+      if self.double_damage_from(i) == true
+        damage_from *= 2
+      end
+    end
+    damage_from
   end
 
-  def winner
+  def fight_winner(i)
+    winner = ""
+    if calculate_damage_to(i) > calculate_damage_from(i)
+      winner = "player"
+    elsif calculate_damage_to(i) < calculate_damage_from(i)
+      winner = "computer"
+    end
+    winner
+  end
+
+  def game_winner
+    game = { player_points: 0, computer_points: 0 }
+    (0..4).each do |n|
+      if fight_winner(n) == "player"
+        game[:player_points] += 1
+      elsif fight_winner(n) == "computer"
+        game[:computer_points] += 1
+      end
+    end
+    game
   end
 
 
