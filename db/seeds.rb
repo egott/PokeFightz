@@ -6,16 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-(1..50).each do |n|
-  response = Unirest.get("http://pokeapi.co/api/v2/pokemon/#{n}").raw_body
-  pokemon = Pokemon.create!(name: JSON.parse(response)["name"])
-  #pokemontypes = Pokemon.create!(name:JSON.parse(response)["types"])
 
-end
-
-  #JSON.parse(response)["types"] ==>
-
-User.create(email: "f@g.com", password:"password")
 Game.create(name: "game1", user_id: 1)
 
 (1..18).each do |n|
@@ -54,4 +45,14 @@ Game.create(name: "game1", user_id: 1)
   end
   type = Type.create!(name: name, half_damage_from: half_damage_from, no_damage_from: no_damage_from, half_damage_to: half_damage_to, double_damage_from: double_damage_from, no_damage_to: no_damage_to, double_damage_to: double_damage_to)
 
+end
+
+(1..50).each do |n|
+  response = Unirest.get("http://pokeapi.co/api/v2/pokemon/#{n}").raw_body
+  pokemon = Pokemon.create!(name: JSON.parse(response)["name"])
+  #pokemontypes = Pokemon.create!(name:JSON.parse(response)["types"])
+  JSON.parse(response)["types"].each do |x|
+    id = Type.find_by(name: x["type"]["name"]).id
+    PokeType.create!(pokemon_id: n, type_id: id)
+  end
 end
