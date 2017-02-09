@@ -14,6 +14,33 @@ class Game < ApplicationRecord
     half_from_types.uniq
   end
 
+  def no_damage_from
+    no_from_types = []
+    self.pokemons.each do |pokemon|
+      pokemon.types.each do |type|
+        no_from_types.concat(type.no_damage_from)
+      end
+    end
+    no_from_types.uniq
+  end
+
+  def double_damage_from
+  end
+
+  def half_damage_to
+  end
+
+  def no_damage_to
+  end
+
+  def double_damage_to
+  end
+
+  def calculate_damage_to
+  end
+
+  def calculate_damage_from
+  end
 
   def winner
   end
