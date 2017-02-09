@@ -1,8 +1,9 @@
 <h3>Choose 5 pokemons to fight with</h3>
 
+<%= render "new_game_form"%>
 
 
-<form>
+<!-- <form>
   <div class="form-group">
     <label for="formGroupExampleInput">Pokemon 1</label>
     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="e.g Charzard">
@@ -24,28 +25,16 @@
     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="e.g Charzard">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form> -->
 
 <br>
 <div class="pokemon-names">
   <h4>Scroll to see some optional pokemons to choose from</h4>
   <div class="scroll-names">
     <ul>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
-      <li>hey</li>
+      <%= @pokemons.each do |pokemon| %>
+        <li><%=pokemon.name%></li>
+      <% end %>
     </ul>
   </div>
 </div>

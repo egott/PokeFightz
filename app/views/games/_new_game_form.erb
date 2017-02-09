@@ -1,23 +1,32 @@
 <div class="">
-  <%= form_for Game.new do |f| %>
-    <%= f.label :pokemon %>:
+  <%= form_for(@pokemon_game) do |f| %>
+    <%= f.label :pokemon_1 %>:
     <%= f.text_field :pokemon %><br />
-
-    <%= f.label :pokemon %>:
-    <%= f.text_field :pokemon %><br />
-
-    <%= f.label :pokemon %>:
-    <%= f.text_field :pokemon %><br />
-
-    <%= f.label :pokemon %>:
-    <%= f.text_field :pokemon %><br />
-
-    <%= f.label :pokemon %>:
-    <%= f.text_field :pokemon %><br />
-
-    <%= f.label :pokemon %>:
-    <%= f.text_field :pokemon %><br />
-
-    <%= f.submit %>
+    <%= f.submit 'add'%>
   <% end %>
+
+  <%= form_for(@pokemon_game) do |f| %>
+    <%= f.label :pokemon_2 %>:
+    <%= f.text_field :pokemon %><br />
+    <%= f.submit 'add' %>
+  <% end %>
+
+  <%= form_for(@pokemon_game) do |f| %>
+    <%= f.label :pokemon_3 %>:
+    <%= f.text_field :pokemon %><br />
+    <%= f.submit 'add' %>
+  <% end %>
+
+  <%= form_for(@pokemon_game) do |f| %>
+    <%= f.label :pokemon_4 %>:
+    <%= f.text_field :pokemon %><br />
+    <%= f.submit 'add' %>
+  <% end %>
+
+  <%= form_for(@pokemon_game) do |f| %>
+    <%= f.label :pokemon_5 %>:
+    <%= f.text_field :pokemon %><br />
+    <%= f.submit 'add'%>
+  <% end %>
+
 </div>
