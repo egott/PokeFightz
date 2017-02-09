@@ -12,6 +12,8 @@ class PokemonGamesController < ApplicationController
 
     add_pokemon.save
 
+    #add done button so when all 5 are clicked and when done reroute to game
+    #when its clicked make button dissapear 
   end
 
   private
