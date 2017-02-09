@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+require 'csv'
 Game.create(name: "game1", user_id: 1)
 
 (1..18).each do |n|
@@ -47,9 +47,11 @@ Game.create(name: "game1", user_id: 1)
 
 end
 
+csv_pokedex = File.read(Rails.root.join('lib', 'seeds', 'list_pokedex.csv'))
+@csv = CSV.parse(csv_pokedex, headers: true)
 (1..50).each do |n|
   response = Unirest.get("http://pokeapi.co/api/v2/pokemon/#{n}").raw_body
-  pokemon = Pokemon.create!(name: JSON.parse(response)["name"])
+  pokemon = Pokemon.create!(name: JSON.parse(response)["name"], url: @csv[n]['image_url'])
   #pokemontypes = Pokemon.create!(name:JSON.parse(response)["types"])
   JSON.parse(response)["types"].each do |x|
     id = Type.find_by(name: x["type"]["name"]).id
