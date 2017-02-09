@@ -1,9 +1,13 @@
-<h1>PokeFightz</h1>
+<div class="jumbotron">
+  <h1>PokeFightz</h1>
+  <% if user_signed_in? %>
+  <p class="lead"><%=current_user.username%>, are you ready to play?</p><br />
+  <p><a class="btn btn-lg btn-success" href="/games" role="button">Begin a Battle!</a></p>
 
-<% if user_signed_in? %>
-  <h4><%=current_user.username%>, are you ready to play?<h4>
-     <h4>If so, <a href="/games">click here!</a></h4>
-<% else %>
-  <h3>If you want to have a Pokemon Battle..</h3>
-  <%= link_to "register", new_user_registration_path %> OR <%= link_to "login", new_user_session_path %>
-<% end %>
+  <% else %>
+    <p class="lead">If you want to have a Pokemon Battle..</p><br />
+    <div class="register-login-buttons">
+      <%= button_to "register", new_user_registration_path, :class => "btn btn-sm btn-success", :method => :get %> or <%= button_to "login", new_user_session_path, :class => "btn btn-sm btn-success", :method => :get %>
+    </div>
+  <% end %>
+</div>
