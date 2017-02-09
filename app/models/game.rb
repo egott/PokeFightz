@@ -35,7 +35,12 @@ class Game < ApplicationRecord
     self.pokemons[i].types.each do |type|
       half_to_types.concat(type.half_damage_to)
     end
-    half_to_types.uniq
+    self.computer_types(i).each do |com_type|
+      if half_to_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
   def no_damage_to(i)
@@ -55,12 +60,13 @@ class Game < ApplicationRecord
   end
 
   def computer_pokemon
-    #create 5 pokemon
+    @computer_team = [Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample]
   end
   #take in i and result of computer_pokemon
-  def computer_types
+  def computer_types(i)
+    @computer_team = [Pokemon.all[5],Pokemon.all[10],Pokemon.all[15],Pokemon.all[20],Pokemon.all[25]]
     enemy_types = []
-    Pokemon.all.sample.types.each do |type|
+    @computer_team[i].types.each do |type|
       enemy_types << type.name
     end
     enemy_types
