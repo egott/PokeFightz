@@ -48,7 +48,12 @@ class Game < ApplicationRecord
     self.pokemons[i].types.each do |type|
       no_to_types.concat(type.no_damage_to)
     end
-    no_to_types.uniq
+    self.computer_types(i).each do |com_type|
+      if no_to_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
   def double_damage_to(i)
@@ -56,10 +61,15 @@ class Game < ApplicationRecord
     self.pokemons[i].types.each do |type|
       double_to_types.concat(type.double_damage_to)
     end
-    double_to_types.uniq
+    self.computer_types(i).each do |com_type|
+      if double_to_types.uniq.include?(com_type)
+        return true
+        break
+      end
+    end
   end
 
-  def computer_pokemon
+  def computer_pokemon(a,b,c,d,e)
     @computer_team = [Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample]
   end
   #take in i and result of computer_pokemon
@@ -73,9 +83,19 @@ class Game < ApplicationRecord
   end
 
   #calculate damage
-  def calculate_damage_to(computer)
-
-
+  def calculate_damage_to(i)
+    damage_to = 1
+    if self.no_damage_to(i) == true
+      damage_to = 0
+    else
+      if self.half_damage_to(i) == true
+        damage_to *= 0.5
+      end
+      if self.double_damage_to(i) == true
+        damage_to *= 2
+      end
+    end
+    damage_to
   end
   #calculate damage from
   def calculate_damage_from
