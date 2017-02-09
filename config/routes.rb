@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :games, only: [:index, :new, :create]
+  resources :games, only: [:index, :new, :create, :show]
   resources :pokemon_games
 
 end

@@ -1,0 +1,8 @@
+<h3>Here is your team</h3>
+<%=@game.pokemons.each do |pokemon|%>
+    <h5><%=pokemon.name%></h5>
+    <%pokemon.types.each do |type|%>
+      <li><%=type.name%></li>
+    <%end%>
+  </ul>
+<% end %>

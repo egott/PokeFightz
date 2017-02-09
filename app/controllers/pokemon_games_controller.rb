@@ -1,5 +1,6 @@
 class PokemonGamesController < ApplicationController
   def new
+    @game = Game.find_by(id: params[:id])
     @pokemon_game = PokemonGame.new
   end
 
@@ -7,11 +8,8 @@ class PokemonGamesController < ApplicationController
     add_pokemon = PokemonGame.new
     add_pokemon.game_id = current_user.games.last.id
     name = pokemon_params
-
     add_pokemon.pokemon_id = Pokemon.find_by(name: pokemon_params[:pokemon]).id
-
     add_pokemon.save
-
   end
 
   private
