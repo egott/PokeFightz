@@ -1,0 +1,17 @@
+<div class="row">
+
+  <div class="col-md-6">
+    <h3><%=@game.user.username.capitalize%>'s Team</h3>
+    <% @game.pokemons.each do |pokemon| %>
+      <h5><%=pokemon.name.upcase%></h5>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h3>Opponents Team</h3>
+    <% @game.computer_pokemon(1, 2, 3, 4, 5).each do |pokemon| %>
+      <h5><%=pokemon.name.upcase%></h5>
+    <% end %>
+  </div>
+
+</div>

@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def index
     @pokemons = Pokemon.all
-    @game = Game.create!(user_id: "#{current_user.id}", name: 'best game ever')
+    @game = Game.create!(user_id: "#{current_user.id}", name: 'game')
     @pokemon_game = PokemonGame.new
   end
 
@@ -12,7 +12,9 @@ class GamesController < ApplicationController
   def create
   end
 
-  private
+  def show
+    @game = Game.find_by(id: params[:id])
+  end
 
 
 end
