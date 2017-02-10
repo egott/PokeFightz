@@ -1,17 +1,36 @@
 <div class="row">
 
-  <div class="col-md-6">
-    <h3><%=@game.user.username.capitalize%>'s Team</h3>
-    <% @game.pokemons.each do |pokemon| %>
-      <h5><%=pokemon.name.upcase%></h5>
+
+
+  <div class="col-md-4">
+    <h3>Opponents Team</h3>
+    <% @game.computer_pokemon(1, 2, 3, 4, 5).each do |pokemon| %>
+      <h5><%=pokemon.name.upcase%> <img src="<%= pokemon.url%>" alt="" style='width:30px'></h5>
+    <% end %>
+
+  </div>
+  <div class="col-md-2">
+    <h3>Damage</h3>
+    <% (0..4).each do |n| %>
+      <h5> <%= @game.calculate_damage_from(n) %> | <%= @game.calculate_damage_to(n) %> <img src="<%=@game.pokemons[n].url %>" style='width:30px'></h5>
     <% end %>
   </div>
 
-  <div class="col-md-6">
-    <h3>Opponents Team</h3>
-    <% @game.computer_pokemon(1, 2, 3, 4, 5).each do |pokemon| %>
-      <h5><%=pokemon.name.upcase%></h5>
+  <div class="col-md-4">
+    <h3><%=@game.user.username.capitalize%>'s Team</h3>
+    <% @game.pokemons.each do |pokemon| %>
+      <h5><%=pokemon.name.upcase%> <img src="<%= pokemon.url%>" alt="" style='width:30px'></h5>
     <% end %>
   </div>
 
 </div>
+
+<h4>
+  player won:
+  <%= @game.game_winner[:player_points] %>
+</h4>
+
+<h4>
+  computer won:
+  <%= @game.game_winner[:computer_points] %>
+</h4>

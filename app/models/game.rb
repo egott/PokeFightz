@@ -6,11 +6,11 @@ class Game < ApplicationRecord
 
 
   def computer_pokemon(a,b,c,d,e)
-    @computer_team = [Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample,Pokemon.all.sample]
+    @computer_team = [Pokemon.all[a],Pokemon.all[b],Pokemon.all[c],Pokemon.all[d],Pokemon.all[e]]
   end
 
   def computer_types(i)
-    @computer_team = [Pokemon.all[7],Pokemon.all[12],Pokemon.all[17],Pokemon.all[45],Pokemon.all[49]]
+  #  @computer_team = [Pokemon.all[7],Pokemon.all[12],Pokemon.all[17],Pokemon.all[45],Pokemon.all[49]]
     enemy_types = []
     @computer_team[i].types.each do |type|
       enemy_types << type.name
