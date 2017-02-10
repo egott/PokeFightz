@@ -1,10 +1,13 @@
-<%= form_for @pokemon_game, :html => {:class => "form-horizontal center"} do |f| %>
-     <div class="form-group">
-       <%= f.label :pokemon1, "Pokemon 1:", class: "col-md-2 control-label" %>
-       <div class="col-md-8">
-         <%= f.text_field :pokemon, class: "form-control" %>
-       </div>
-     </div>
+<div class="new-game-form">
 
-     <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
-<% end %>
+  <%= form_for @pokemon_game, :html => {:class => "form-horizontal center"} do |f| %>
+  <div class="form-group">
+    <%= f.label :pokemon1, "Pokémons:", class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :pokemon, placeholder: "e.g charmander, squirtle, rattata", class: "form-control" %>
+    </div>
+    <%= f.submit "submit", class: "col-md-1 btn btn-outline-danger" %>
+  </div>
+
+  <% end %>
+</div>

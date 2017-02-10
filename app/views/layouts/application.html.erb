@@ -14,13 +14,17 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="/">Home</a></li>
+            <li><%= link_to "home", root_path %></li>
             <% if user_signed_in? %>
               <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "play", games_path %></li>
+            <% else %>
+              <li><%= link_to "register", new_user_registration_path %></li>
+              <li><%=link_to "login", new_user_session_path %> </li>
             <% end %>
           </ul>
         </nav>
-        <h3 class="text-muted">PokeFightz</h3>
+        <h3 class="text-muted">PokéFightz</h3>
       </div>
     <nav>
 
