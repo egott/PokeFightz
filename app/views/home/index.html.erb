@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h1>PokeFightz</h1>
   <% if user_signed_in? %>
   <p class="lead"><%=current_user.username%>, are you ready to play?</p><br />
@@ -10,4 +10,66 @@
       <%= button_to "register", new_user_registration_path, :class => "btn btn-sm btn-success", :method => :get %> or <%= button_to "login", new_user_session_path, :class => "btn btn-sm btn-success", :method => :get %>
     </div>
   <% end %>
-</div>
+</div> -->
+<div id="StefTastan">
+
+            <!-- pokeball container -->
+            <div id="moving-container">
+                <div id="pokeball-container">
+                <!-- pokeball -->
+                    <div id="pokeball">
+                        <div class="pokeball-details"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- charmander -->
+            <div id="charmander">
+                <div id="arms"></div>
+                <div id="feet"></div>
+                <div id="body">
+                    <div id="eyes"></div>
+                    <div id="pupils"></div>
+                    <div id="nostrils"></div>
+                    <div id="mouth"></div>
+                    <div id="belly"></div>
+                </div>
+                <div id="tail"></div>
+                <div id="flame"></div>
+            </div>
+
+            <!-- bulbasaur -->
+            <div id="bulbasaur">
+                <div id="head">
+                    <div id="eyes"></div>
+                    <div id="pupils"></div>
+                    <div id="nostrils"></div>
+                    <div class="mouth"></div>
+                </div>
+                <div class="ears"></div>
+                <div id="body">
+                    <div class="spots spot1"></div>
+                    <div class="spots spot2"></div>
+                    <div class="spots spot3"></div>
+                </div>
+                <div id="front-feet"></div>
+                <div id="back-feet"></div>
+                <div id="bulb"></div>
+            </div>
+
+            <!-- squirtle -->
+            <div id="squirtle">
+                <div id="arms"></div>
+                <div id="feet"></div>
+                <div id="head">
+                    <div id="eyes"></div>
+                    <div id="pupils"></div>
+                    <div id="nostrils"></div>
+                    <div id="mouth"></div>
+                </div>
+                <div id="body"></div>
+                <div id="shell"></div>
+                <div id="tail"></div>
+            </div>
+
+        </div>
